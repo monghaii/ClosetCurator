@@ -89,10 +89,25 @@
 
         <script>
             var submitted = false;
-            document.getElementById('googleForm').addEventListener('submit', function(e) {
-                if(submitted) {
+            var form = document.getElementById('googleForm');
+            var iframe = document.getElementById('hidden_iframe');
+            
+            // Listen for the iframe load event
+            iframe.addEventListener('load', function() {
+                if (submitted) {
                     window.location.href = 'thankyou.html';
                 }
+            });
+
+            form.addEventListener('submit', function(e) {
+                submitted = true;
+                
+                // Add a fallback timeout in case iframe load event doesn't fire
+                setTimeout(function() {
+                    if (window.location.pathname !== '/thankyou.html') {
+                        window.location.href = 'thankyou.html';
+                    }
+                }, 5000);  // 5 second fallback
             });
         </script>
     </section>
