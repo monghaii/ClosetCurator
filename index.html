@@ -20,11 +20,11 @@
     </style>
 </head>
 <body>
-    <div class="brand-name">ClosetCurator</div>
-
-    <section class="container">
+    <div class="brand-name" style="left: 50%; transform: translateX(-50%); margin-bottom: 20px;">ClosetCurator</div>
+    <section class="container" style="margin-top: 50px;">
         <header>Join waitlist</header>
-        <form action="https://docs.google.com/forms/d/e/1FAIpQLSexJVAbUHEWOWUM4Irk4Mr8VgPX0cJu43DkTQH6BVicjU9cFA/formResponse" method="POST" class="form">
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLSexJVAbUHEWOWUM4Irk4Mr8VgPX0cJu43DkTQH6BVicjU9cFA/formResponse"
+            method="POST" class="form" id="googleForm" target="hidden_iframe" onsubmit="submitted=true;">
             <div class="input-box">
                 <label>Full Name</label>
                 <input type="text" placeholder="Enter full name" name="entry.1041433501" required />
@@ -85,6 +85,16 @@
             </div>
             <button>Submit</button>
         </form>
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+        <script>
+            var submitted = false;
+            document.getElementById('googleForm').addEventListener('submit', function(e) {
+                if(submitted) {
+                    window.location.href = 'thankyou.html';
+                }
+            });
+        </script>
     </section>
 </body>
 
